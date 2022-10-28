@@ -2,7 +2,7 @@
 import * as React from 'react';
 import { View } from 'react-native';
 import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
-
+import Micon from 'react-native-vector-icons/MaterialCommunityIcons';
 import Colors from '../constants/Colors';
 import useColorScheme from '../hooks/useColorScheme';
 import CaptureScreen from '../screens/capture/';
@@ -25,7 +25,7 @@ export default function BottomTabNavigator() {
                 component={CaptureScreen}
                 options={({ navigation }: RootTabScreenProps<'Capture'>) => ({
                     title: 'Capture',
-                    tabBarIcon: ({ }) => <View style={{ width: 20, height: 20, borderRadius: 10, backgroundColor: 'red' }} />,
+                    tabBarIcon: ({ color, size }) => <Micon name={'home'} size={size} color={color} />,
                 })}
             />
             <BottomTab.Screen
@@ -33,7 +33,7 @@ export default function BottomTabNavigator() {
                 component={OverviewScreen}
                 options={{
                     title: 'Overview',
-                    tabBarIcon: ({ }) => <View style={{ width: 20, height: 20, borderRadius: 10, backgroundColor: 'red' }} />,
+                    tabBarIcon: ({ color, size }) => <Micon name={'view-dashboard'} size={size} color={color} />,
                 }}
             />
         </BottomTab.Navigator>
