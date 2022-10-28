@@ -27,7 +27,7 @@ export default function useCachedResources() {
     }
 
     loadResourcesAndDataAsync();
-  }, []);
+  }, [dispatch]);
 
   return isLoadingComplete;
 }
