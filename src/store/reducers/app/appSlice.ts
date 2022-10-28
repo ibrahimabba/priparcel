@@ -1,5 +1,6 @@
 import {ColorSchemeName} from 'react-native';
 import {createSlice, PayloadAction} from '@reduxjs/toolkit';
+import {RootState} from '../../store';
 
 export interface IAppState {
   user: {
@@ -36,5 +37,7 @@ export const appSlice = createSlice({
 
 // Action creators are generated for each case reducer function
 export const {appIdentifier, switchTheme} = appSlice.actions;
+
+export const selectTheme = (state: RootState) => state.app.theme;
 
 export default appSlice.reducer;
