@@ -3,9 +3,9 @@ import {createBottomTabNavigator} from '@react-navigation/bottom-tabs';
 import Micon from 'react-native-vector-icons/MaterialCommunityIcons';
 import Colors from '../constants/Colors';
 import useColorScheme from '../hooks/useColorScheme';
-import CaptureScreen from '../screens/capture/';
 import OverviewScreen from '../screens/overview';
-import {RootTabParamList, RootTabScreenProps} from '../../types';
+import {RootTabParamList} from '../../types';
+import CaptureStackNavigator from './CaptureStackNavigator';
 
 const BottomTab = createBottomTabNavigator<RootTabParamList>();
 
@@ -20,12 +20,13 @@ export default function BottomTabNavigator() {
       }}>
       <BottomTab.Screen
         name="Capture"
-        component={CaptureScreen}
+        component={CaptureStackNavigator}
         options={() => ({
           title: 'Capture',
           tabBarIcon: ({color, size}) => (
             <Micon name={'home'} size={size} color={color} />
           ),
+          headerShown: false,
         })}
       />
       <BottomTab.Screen

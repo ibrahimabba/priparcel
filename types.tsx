@@ -21,6 +21,11 @@ export type RootStackParamList = {
   NotFound: undefined;
 };
 
+export type CaptureStackParamList = {
+  Barcode: undefined;
+  CaptureScreen: {uri: string};
+};
+
 export type RootStackScreenProps<Screen extends keyof RootStackParamList> =
   NativeStackScreenProps<RootStackParamList, Screen>;
 
@@ -28,6 +33,15 @@ export type RootTabParamList = {
   Overview: undefined;
   Capture: undefined;
 };
+
+export type BarcodeScreenProps = NativeStackScreenProps<
+  CaptureStackParamList,
+  'Barcode'
+>;
+export type CaptureScreenProps = NativeStackScreenProps<
+  CaptureStackParamList,
+  'CaptureScreen'
+>;
 
 export type RootTabScreenProps<Screen extends keyof RootTabParamList> =
   CompositeScreenProps<
