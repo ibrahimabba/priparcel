@@ -11,6 +11,6 @@ export default function useColorScheme(): NonNullable<ColorSchemeName> {
   const dispatch = useDispatch();
   useEffect(() => {
     dispatch(switchTheme(colorScheme));
-  }, [colorScheme]);
+  }, [dispatch, colorScheme]);
   return colorScheme;
 }

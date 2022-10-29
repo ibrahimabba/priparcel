@@ -43,6 +43,16 @@
 	<array>
 		<string>armv7</string>
 	</array>
+	<key>UIAppFonts</key>
+	<array>
+		<string>Ionicons.ttf</string>
+		<string>MaterialIcons.ttf</string>
+		<string>MaterialCommunityIcons.ttf</string>
+	</array>
+	<key>NSCameraUsageDescription</key>
+		<string>Allow $(PRODUCT_NAME) to use the camera</string>
+	<key>NSMicrophoneUsageDescription</key>
+		<string>Allow $(PRODUCT_NAME) to use the microphone</string>
 	<key>UISupportedInterfaceOrientations</key>
 	<array>
 		<string>UIInterfaceOrientationPortrait</string>

@@ -3,9 +3,15 @@ apply from: file("../node_modules/@react-native-community/cli-platform-android/n
 include ':app'
 includeBuild('../node_modules/react-native-gradle-plugin')
 
+include ':@react-native-camera-roll_camera-roll'
+project(':@react-native-camera-roll_camera-roll').projectDir = new File(rootProject.projectDir,'../node_modules/@react-native-camera-roll/camera-roll/android')
+
 if (settings.hasProperty("newArchEnabled") && settings.newArchEnabled == "true") {
     include(":ReactAndroid")
     project(":ReactAndroid").projectDir = file('../node_modules/react-native/ReactAndroid')
     include(":ReactAndroid:hermes-engine")
     project(":ReactAndroid:hermes-engine").projectDir = file('../node_modules/react-native/ReactAndroid/hermes-engine')
 }
+
+apply from: new File(["node", "--print", "require.resolve('expo/package.json')"].execute(null, rootDir).text.trim(), "../scripts/autolinking.gradle")
+useExpoModules()
