@@ -3,16 +3,16 @@
  * https://reactnavigation.org/docs/typescript/
  */
 
-import { BottomTabScreenProps } from '@react-navigation/bottom-tabs';
+import {BottomTabScreenProps} from '@react-navigation/bottom-tabs';
 import {
   CompositeScreenProps,
   NavigatorScreenParams,
 } from '@react-navigation/native';
-import { NativeStackScreenProps } from '@react-navigation/native-stack';
+import {NativeStackScreenProps} from '@react-navigation/native-stack';
 
 declare global {
   namespace ReactNavigation {
-    interface RootParamList extends RootStackParamList { }
+    interface RootParamList extends RootStackParamList {}
   }
 }
 
@@ -23,7 +23,7 @@ export type RootStackParamList = {
 
 export type CaptureStackParamList = {
   Barcode: undefined;
-  CaptureScreen: { uri: string };
+  CaptureScreen: {uri: string};
 };
 
 export type RootStackScreenProps<Screen extends keyof RootStackParamList> =
@@ -31,7 +31,7 @@ export type RootStackScreenProps<Screen extends keyof RootStackParamList> =
 
 export type RootTabParamList = {
   Overview: undefined;
-  Capture: { screen: string } | undefined;
+  Capture: {screen: string} | undefined;
 };
 
 export type BarcodeScreenProps = NativeStackScreenProps<

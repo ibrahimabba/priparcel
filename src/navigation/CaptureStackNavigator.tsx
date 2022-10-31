@@ -1,14 +1,14 @@
 import * as React from 'react';
-import { createNativeStackNavigator } from '@react-navigation/native-stack';
+import {createNativeStackNavigator} from '@react-navigation/native-stack';
 
-import { CaptureStackParamList } from '../../types';
+import {CaptureStackParamList} from '../../types';
 
-import { useSelector } from '../hooks/useRedux';
-import { selectTheme } from '../store/reducers/app/appSlice';
+import {useSelector} from '../hooks/useRedux';
+import {selectTheme} from '../store/reducers/app/appSlice';
 
 import BarcodeScreen from '../screens/barcode';
 import Capture from '../screens/capture';
-import { Image } from 'react-native';
+import {Image} from 'react-native';
 
 const Stack = createNativeStackNavigator<CaptureStackParamList>();
 
@@ -28,14 +28,14 @@ export default function CaptureStackNavigator() {
           headerShown: true,
           headerTitle: '',
           headerLeft: () => (
-            <Image source={headerLeftSource} style={{ width: 170, height: 30 }} />
-          )
+            <Image source={headerLeftSource} style={{width: 170, height: 30}} />
+          ),
         }}
       />
       <Stack.Screen
         name="CaptureScreen"
         component={Capture}
-        options={{ headerShown: true, title: 'Capture' }}
+        options={{headerShown: true, title: 'Capture'}}
       />
     </Stack.Navigator>
   );
