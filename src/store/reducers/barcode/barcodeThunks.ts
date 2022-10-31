@@ -65,43 +65,43 @@ export const uploadBarcodePicuresAsync = createAsyncThunk(
 );
 
 const uploadPhoto = async ({uri, state}: {uri: string; state: RootState}) => {
-  const response = await FileSystem.uploadAsync(
+  let fetchResponse = await fetch(uri);
+  let blob = await fetchResponse.blob();
+
+  const response = await fetch(
     baseUrl + '/api/admin/v1/priparcel/parcels/photos',
-    uri,
     {
-      fieldName: 'file',
-      httpMethod: 'POST',
-      uploadType: FileSystem.FileSystemUploadType.BINARY_CONTENT,
+      method: 'POST',
       headers: {
         'Content-Type': 'application/json',
         Accept: 'application/json',
         Authorization: 'Bearer ' + state.app.user.token,
       },
-      parameters: {
+      body: JSON.stringify({
+        file: blob,
         sequence: state.barcode.barcode?.sequence || '',
-      },
+      }),
     },
   );
-  return JSON.stringify(response, null, 4);
-  // let fetchResponse = await fetch(uri);
-  // let blob = await fetchResponse.blob();
-
-  // const response = await fetch(
+  return response.status;
+  // const response = await FileSystem.uploadAsync(
   //   baseUrl + '/api/admin/v1/priparcel/parcels/photos',
+  //   uri,
   //   {
-  //     method: 'POST',
+  //     fieldName: 'file',
+  //     httpMethod: 'POST',
+  //     uploadType: FileSystem.FileSystemUploadType.BINARY_CONTENT,
   //     headers: {
   //       'Content-Type': 'application/json',
   //       Accept: 'application/json',
   //       Authorization: 'Bearer ' + state.app.user.token,
   //     },
-  //     body: JSON.stringify({
-  //       file: blob,
+  //     parameters: {
   //       sequence: state.barcode.barcode?.sequence || '',
-  //     }),
+  //     },
   //   },
   // );
-  // return response.status;
+  // return JSON.stringify(response, null, 4);
 };
 
 const showToast = ({
