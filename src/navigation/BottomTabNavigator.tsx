@@ -6,12 +6,16 @@ import useColorScheme from '../hooks/useColorScheme';
 import OverviewScreen from '../screens/overview';
 import {RootTabParamList} from '../../types';
 import CaptureStackNavigator from './CaptureStackNavigator';
+import {Image} from 'react-native';
 
 const BottomTab = createBottomTabNavigator<RootTabParamList>();
 
 export default function BottomTabNavigator() {
   const colorScheme = useColorScheme();
-
+  const headerLeftSource =
+    colorScheme === 'dark'
+      ? require('../../assets/Icons/PriParcel-home-dark.png')
+      : require('../../assets/Icons/PriParcel-home-light.jpg');
   return (
     <BottomTab.Navigator
       initialRouteName="Capture"
@@ -33,7 +37,13 @@ export default function BottomTabNavigator() {
         name="Overview"
         component={OverviewScreen}
         options={{
-          title: 'Overview',
+          headerTitle: '',
+          headerLeft: () => (
+            <Image
+              source={headerLeftSource}
+              style={{width: 170, height: 30, marginLeft: 16}}
+            />
+          ),
           tabBarIcon: ({color, size}) => (
             <Micon name={'view-dashboard'} size={size} color={color} />
           ),

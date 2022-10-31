@@ -3,8 +3,8 @@ import {View, StyleSheet} from 'react-native';
 
 import Layout from '../../constants/Layout';
 import BarcodeComponent from './components/Barcode';
-import ContinueButton from './components/ContinueButton';
 import {BarcodeScreenProps} from '../../../types';
+import Button from '../../components/button';
 
 export default function BarcodeScreen({navigation}: BarcodeScreenProps) {
   const [barcodeImage, setBarcodeImage] = useState<string>('');
@@ -22,7 +22,11 @@ export default function BarcodeScreen({navigation}: BarcodeScreenProps) {
     <View style={styles.container}>
       <View style={styles.content}>
         <BarcodeComponent onBarcodeSnap={onBarcodeSnap} />
-        <ContinueButton onPress={navigateTOCaptureScreen} />
+        <Button
+          fontSize={22}
+          title="Continue"
+          onPress={navigateTOCaptureScreen}
+        />
       </View>
     </View>
   );
@@ -30,6 +34,7 @@ export default function BarcodeScreen({navigation}: BarcodeScreenProps) {
 
 const styles = StyleSheet.create({
   container: {
+    flex: 1,
     alignItems: 'center',
     justifyContent: 'center',
     height: Layout.screenHeight,

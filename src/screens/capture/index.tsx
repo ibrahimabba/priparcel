@@ -17,7 +17,7 @@ import {CaptureScreenProps} from '../../../types';
 import WaterMarkedImage from './components/WaterMarkedImage';
 import SnapAndFinishButton from './components/SnapAndFinishButton';
 
-export default function Capture({route}: CaptureScreenProps) {
+export default function Capture({navigation, route}: CaptureScreenProps) {
   const [capturedImage, setCapturedImage] = useState<
     CameraCapturedPicture | undefined
   >();
@@ -27,9 +27,9 @@ export default function Capture({route}: CaptureScreenProps) {
   >('continuous');
 
   // captureCount tracks the number of times the warterMarked view is captured because,
-  // The view needs to be captured more than once in order to have a clear watermarked picture
+  // The view needs to be captured at least two times in order to have a clear watermarked picture
   const onWaterMarkSnap = (uri: string) => {
-    if (capturedCount > 3) {
+    if (capturedCount > 2) {
       savePicture(uri);
       setCapturMode('mount');
       setCaptureCount(1);
@@ -58,7 +58,7 @@ export default function Capture({route}: CaptureScreenProps) {
     if (Platform.OS === 'android' && !(await hasAndroidPermission())) {
       return;
     }
-    CameraRoll.save(img);
+    CameraRoll.save(img, {album: 'priparcel'});
   }
 
   const handleSnapAgain = () => {
@@ -67,9 +67,13 @@ export default function Capture({route}: CaptureScreenProps) {
     setCapturMode('continuous');
   };
 
-  const handleFinish = () => {};
+  const handleFinish = () => {
+    navigation.navigate('Overview');
+  };
   return (
-    <ScrollView contentContainerStyle={styles.container}>
+    <ScrollView
+      showsVerticalScrollIndicator={false}
+      contentContainerStyle={styles.container}>
       <View style={styles.content}>
         <BarcodeGenerator uri={route.params.uri} />
         {!capturedImage ? (
@@ -94,7 +98,7 @@ export default function Capture({route}: CaptureScreenProps) {
 
 const styles = StyleSheet.create({
   container: {
-    flex: 1,
+    //flex: 1,
     height: Layout.screenHeight,
   },
   content: {
