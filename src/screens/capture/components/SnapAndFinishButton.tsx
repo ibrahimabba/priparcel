@@ -1,5 +1,5 @@
 import React from 'react';
-import {StyleSheet} from 'react-native';
+import {StyleSheet, View} from 'react-native';
 import Button from '../../../components/button';
 
 interface Props {
@@ -13,14 +13,14 @@ export default function SnapAndFinishButton({
   capturedImage,
 }: Props) {
   return (
-    <>
+    <View style={styles.buttonsContainer}>
       {capturedImage && (
         <Button onPress={handleSnapAgain} title="Snap again" fontSize={16} />
       )}
       {capturedImage && (
-        <Button onPress={handleFinish} title="Finish" fontSize={30} />
+        <Button onPress={handleFinish} title="Finish" fontSize={16} />
       )}
-    </>
+    </View>
   );
 }
 
@@ -29,5 +29,11 @@ const styles = StyleSheet.create({
     marginTop: 20,
     fontSize: 22,
     fontWeight: '700',
+  },
+  buttonsContainer: {
+    flexDirection: 'row',
+    alignItems: 'center',
+    justifyContent: 'space-between',
+    width: '80%',
   },
 });

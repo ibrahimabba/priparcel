@@ -60,7 +60,7 @@ export default function Overview({navigation}: OverviewScreenProps) {
           actionType: 'Save and next',
         }),
       );
-      navigation.navigate('Capture');
+      navigation.navigate('Capture', {screen: 'Barcode'});
     }
   };
   const handleSaveAndQuit = () => {
@@ -71,7 +71,7 @@ export default function Overview({navigation}: OverviewScreenProps) {
           actionType: 'Save and quit',
         }),
       );
-      navigation.navigate('Capture');
+      navigation.navigate('Capture', {screen: 'Barcode'});
     }
   };
   const handleQuitWithoutSaving = () => {
@@ -83,7 +83,7 @@ export default function Overview({navigation}: OverviewScreenProps) {
         text1: 'Deleted',
         text2: 'Photos deleted successfully 👋',
       });
-      navigation.navigate('Capture');
+      navigation.navigate('Capture', {screen: 'Barcode'});
     } else {
       Toast.show({
         type: 'info',
