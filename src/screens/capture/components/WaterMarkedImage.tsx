@@ -28,17 +28,18 @@ export default function WaterMarkedImage({
   };
   return (
     <ViewShot
-      options={{format: 'png'}}
+      options={{format: 'jpg', quality: 0.7}}
+      style={{marginTop: 50}}
       onCapture={onWaterMarkSnap}
       captureMode={captureMode}>
       <ImageBackground
         imageStyle={{resizeMode: 'cover'}}
         source={{uri: capturedImageUri}}
-        style={{width: 300, height: 200, marginTop: 50}}>
-        <View style={{position: 'absolute', top: 130, left: 25}}>
+        style={{width: 300, height: 300}}>
+        <View style={{position: 'absolute', top: 230, left: 25}}>
           <Image source={{uri: barcodeUri}} style={{width: 150, height: 50}} />
           <Text style={[styles.sequenceStyle, textColor]}>
-            {barcodeState.barcode.sequence}
+            {barcodeState.barcode && barcodeState.barcode.sequence}
           </Text>
         </View>
       </ImageBackground>
