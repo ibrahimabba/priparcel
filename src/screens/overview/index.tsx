@@ -1,13 +1,13 @@
-import React, {useState, useEffect} from 'react';
-import {View, FlatList, TouchableOpacity, Image, Text} from 'react-native';
-import {useIsFocused} from '@react-navigation/native';
+import React, { useState, useEffect } from 'react';
+import { View, FlatList, TouchableOpacity, Image, Text } from 'react-native';
+import { useIsFocused } from '@react-navigation/native';
 
-import {CameraRoll} from '@react-native-camera-roll/camera-roll';
+import { CameraRoll } from '@react-native-camera-roll/camera-roll';
 import Toast from 'react-native-toast-message';
 import FooterButtons from './components/FooterButtons';
-import {useDispatch} from '../../hooks/useRedux';
-import {uploadBarcodePicuresAsync} from '../../store/reducers/barcode/barcodeThunks';
-import {OverviewScreenProps} from '../../../types';
+import { useDispatch } from '../../hooks/useRedux';
+import { uploadBarcodePicuresAsync } from '../../store/reducers/barcode/barcodeThunks';
+import { OverviewScreenProps } from '../../../types';
 
 import RenderItem from './components/RenderItem';
 import ListEmptyComponent from './components/ListEmptyComponent';
@@ -19,7 +19,7 @@ export interface Img {
   width: number;
   height: number;
 }
-export default function Overview({navigation}: OverviewScreenProps) {
+export default function Overview({ navigation }: OverviewScreenProps) {
   const [galleryImages, setGalleryImages] = useState<Img[]>();
   const [pressedImage, setPressedImage] = useState<string>('');
   const [modalVisible, setModalVisible] = useState(false);
@@ -53,40 +53,54 @@ export default function Overview({navigation}: OverviewScreenProps) {
   };
 
   const handleSaveAndNext = () => {
-    if (galleryImages) {
+    if (galleryImages && galleryImages.length > 0) {
       dispatch(
         uploadBarcodePicuresAsync({
           photos: galleryImages,
           actionType: 'Save and next',
         }),
       );
-      navigation.navigate('Capture', {screen: 'Barcode'});
+      navigation.navigate('Capture', { screen: 'Barcode' });
+    } else {
+      Toast.show({
+        type: 'info',
+        text1: 'No Images to save',
+        text2: '',
+      });
     }
   };
   const handleSaveAndQuit = () => {
-    if (galleryImages) {
+    if (galleryImages && galleryImages.length > 0) {
       dispatch(
         uploadBarcodePicuresAsync({
           photos: galleryImages,
           actionType: 'Save and quit',
         }),
       );
-      navigation.navigate('Capture', {screen: 'Barcode'});
+      navigation.navigate('Capture', { screen: 'Barcode' });
+    } else {
+      Toast.show({
+        type: 'info',
+        text1: 'No Images to save',
+        text2: '',
+      });
     }
   };
   const handleQuitWithoutSaving = () => {
     if (galleryImages && galleryImages.length > 0) {
-      const photoUris = galleryImages?.map(img => img.uri) || [];
+      const photoUris = galleryImages.map(img => img.uri) || [];
       CameraRoll.deletePhotos(photoUris);
       Toast.show({
         type: 'success',
         text1: 'Deleted',
         text2: 'Photos deleted successfully 👋',
       });
-      navigation.navigate('Capture', {screen: 'Barcode'});
+      navigation.navigate('Capture', { screen: 'Barcode' });
     } else {
       Toast.show({
         type: 'info',
+        text1: 'Nothing to delete',
+        text2: '',
       });
     }
   };
@@ -125,11 +139,11 @@ export default function Overview({navigation}: OverviewScreenProps) {
     }
   };
   return (
-    <View style={{flex: 1}}>
+    <View style={{ flex: 1 }}>
       <FlatList
         data={galleryImages}
         ListEmptyComponent={ListEmptyComponent}
-        renderItem={({item}) => (
+        renderItem={({ item }) => (
           <RenderItem item={item} onPress={handleOpenModal} />
         )}
         showsVerticalScrollIndicator={false}
