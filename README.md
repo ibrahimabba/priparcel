@@ -9,8 +9,15 @@ The project is built with React Native
 
 ## Installation
 
+Clone the app
 ```bash
-$ yarn install
+git clone https://github.com/ibrahimabba/priparcel.git
+cd priparcel
+```
+
+And install dependencies
+```bash
+$ npm install or yarn install
 ```
 
 ## Running the app
@@ -19,5 +26,5 @@ The project can be runned by both yarn and npm.
 
 ```bash
 # development
-$ yarn run start
+$ npm start or yarn run start
 ```
