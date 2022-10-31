@@ -31,7 +31,7 @@ export type RootStackScreenProps<Screen extends keyof RootStackParamList> =
 
 export type RootTabParamList = {
   Overview: undefined;
-  Capture: undefined;
+  Capture: {screen: string} | undefined;
 };
 
 export type BarcodeScreenProps = NativeStackScreenProps<
