@@ -24,11 +24,23 @@ export default function BarcodeComponent({onBarcodeSnap}: Props) {
   }, []);
 
   const fetchLatestBarcode = async () => {
-    dispatch(fetchBarcodeAsync());
+    if (!barcodeState.barcode) {
+      dispatch(fetchBarcodeAsync());
+    }
   };
   const textColor = {
     color: theme === 'dark' ? Colors.dark.text : Colors.light.text,
   };
+
+  if (!barcodeState.barcode) {
+    return (
+      <View style={styles.barcodeLoading}>
+        <Text style={[styles.barcodeLoadingText, textColor]}>
+          Empty Barcode
+        </Text>
+      </View>
+    );
+  }
   return (
     <>
       {barcodeState.status === 'loading' ? (
@@ -38,7 +50,7 @@ export default function BarcodeComponent({onBarcodeSnap}: Props) {
             size="large"
           />
           <Text style={[styles.barcodeLoadingText, textColor]}>
-            Fetching Barcode...
+            Fetching Latest Barcode...
           </Text>
         </View>
       ) : (

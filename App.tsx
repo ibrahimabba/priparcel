@@ -1,10 +1,11 @@
 import React from 'react';
 import {SafeAreaView, StatusBar} from 'react-native';
-
+import Toast from 'react-native-toast-message';
 import useCachedResources from './src/hooks/useCachedResources';
 import useColorScheme from './src/hooks/useColorScheme';
 import {Colors} from 'react-native/Libraries/NewAppScreen';
 import Navigation from './src/navigation';
+import SplashScreen from './src/components/splahscreen';
 
 const App = () => {
   const isLoadingComplete = useCachedResources();
@@ -17,7 +18,7 @@ const App = () => {
   };
 
   if (!isLoadingComplete) {
-    return null;
+    return <SplashScreen />;
   } else {
     return (
       <SafeAreaView style={backgroundStyle}>
@@ -26,6 +27,7 @@ const App = () => {
           backgroundColor={backgroundStyle.backgroundColor}
         />
         <Navigation colorScheme={colorScheme} />
+        <Toast />
       </SafeAreaView>
     );
   }

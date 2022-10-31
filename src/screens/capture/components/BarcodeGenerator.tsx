@@ -21,7 +21,7 @@ export default function BarcodeGenerator({uri}: Props) {
       <View style={styles.barcodeView}>
         <Barcode value={uri} />
         <Text style={[styles.sequenceStyle, textColor]}>
-          {barcodeState.barcode.sequence}
+          {barcodeState.barcode && barcodeState.barcode.sequence}
         </Text>
       </View>
     </>

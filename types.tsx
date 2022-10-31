@@ -38,9 +38,14 @@ export type BarcodeScreenProps = NativeStackScreenProps<
   CaptureStackParamList,
   'Barcode'
 >;
-export type CaptureScreenProps = NativeStackScreenProps<
-  CaptureStackParamList,
-  'CaptureScreen'
+
+export type OverviewScreenProps = BottomTabScreenProps<
+  RootTabParamList,
+  'Overview'
+>;
+export type CaptureScreenProps = CompositeScreenProps<
+  NativeStackScreenProps<CaptureStackParamList, 'CaptureScreen'>,
+  BottomTabScreenProps<RootTabParamList, 'Overview'>
 >;
 
 export type RootTabScreenProps<Screen extends keyof RootTabParamList> =
