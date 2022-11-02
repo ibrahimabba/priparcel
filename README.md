@@ -1,5 +1,5 @@
 ## Description
-An app that that pictures of incoming parcels and upload to portal for further processing.
+An app that takes pictures of incoming parcels and upload to portal for further processing.
 The app fetches barcode sequence from server and generates barcode from the sequence and then watermark
 the barcode on the Parcel image before uploading to server for further processing.
 
