@@ -26,5 +26,5 @@ The project can be runned by both yarn and npm.
 
 ```bash
 # development
-$ npm start or yarn run start
+$ npm start and npm run android or npm run ios
 ```
